@@ -1,0 +1,34 @@
+
+//Primero se obtiene la conexión a la base de datos con un código como este:
+DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/prueba","usuario","clave");
+ 
+//El siguiente paso es realizar la consulta y obtener el ResultSet. El código es el siguiente
+Statement s = conexion.createStatement();
+ResultSet rs = s.executeQuery("select * from tablaprueba");
+ 
+//Para meter los datos en el JTable, usaremos la clase DefaultTableModel. Para ello basta con instanciar el JTable como se muestra en el codigo
+DefaultTableModel modelo = new DefaultTableModel();
+JTable tabla = new JTable(modelo);
+ 
+//Ahora sólo hay que rellenar el DefaultTableModel con los datos del ResultSet.
+ 
+// Creamos las columnas.
+modelo.addColumn("id");
+modelo.addColumn("nombre");
+modelo.addColumn("telefono");
+ 
+// Recorremos los registros con un ciclo while
+while (rs.next())
+{
+   // Se crea un array que será una de las filas de la tabla.
+   Object [] fila = new Object[3]; // Hay tres columnas en la tabla
+ 
+   // Se rellena cada posición del array con una de las columnas de la tabla en base de datos.
+   for (int i=0;i<3;i++)
+      fila[i] = rs.getObject(i+1); // El primer indice en rs es el 1, no el cero, por eso se suma 1.
+                                          //No es como en PHP o otros lenguajes donde los indices inician con 0
+ 
+   // Se añade al modelo la fila completa.
+   modelo.addRow(fila);
+}
