@@ -26,7 +26,7 @@ public abstract class ConnectionManager {
         String dbDriver = "com.mysql.jdbc.Driver";
         
         // Establece la conexion a utilizar contra la base de datos
-        String dbConnString = "jdbc:mysql://localhost/danone";
+        String dbConnString = "jdbc:mysql://localhost/pedidos";
         
         // Establece el usuario de la base de datos
         String dbUser = "alvaro";

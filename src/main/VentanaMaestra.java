@@ -127,9 +127,7 @@ public class VentanaMaestra extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                //new VentanaMaestra().setVisible(true);
                 try {
-                    //new DescargaPedidosADA().setVisible(true);
                     VentanaMaestra v = new VentanaMaestra();
                     v.setVisible(true);
                     v.setLocationRelativeTo(null);
